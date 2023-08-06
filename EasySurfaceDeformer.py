@@ -99,10 +99,7 @@ class bindSurfaceDeform(bpy.types.Operator):
 
 		for obj in objs:
 
-			if obj.data.shape_keys == None:
-				obj.shape_key_add(name="Basis",from_mix=False)
-				obj.data.shape_keys.use_relative = False
-			else:
+			if obj.data.shape_keys != None:
 				obj.data.shape_keys.use_relative = False
 
 			if obj.modifiers.get('SDF_Deformer') == None:
@@ -113,7 +110,8 @@ class bindSurfaceDeform(bpy.types.Operator):
 						modifier=mod.name
 						)
 					
-			obj.data.shape_keys.use_relative = True
+			if obj.data.shape_keys != None:
+				obj.data.shape_keys.use_relative = True
 
 		target_obj.data.shape_keys.use_relative = True
 		
