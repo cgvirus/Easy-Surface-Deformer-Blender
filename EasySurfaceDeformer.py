@@ -89,6 +89,7 @@ class bindSurfaceDeform(bpy.types.Operator):
 
 		target_obj =  bpy.context.scene.target
 		selected_objs = bpy.context.selected_objects
+		target_obj.data.shape_keys.use_relative = False
 
 
 		objs = [o for o in selected_objs
@@ -105,6 +106,8 @@ class bindSurfaceDeform(bpy.types.Operator):
 						modifier=mod.name
 						)
 
+		target_obj.data.shape_keys.use_relative = True
+		
 	def execute(self, context):
 
 		try:
@@ -179,6 +182,7 @@ class applyShapeKey(bpy.types.Operator):
 		target_obj = bpy.context.scene.target
 		selected_objs = bpy.context.selected_objects
 		target_key_len = len(target_obj.data.shape_keys.key_blocks)
+		target_obj.data.shape_keys.use_relative = False
 		target_obj.show_only_shape_key = True
 
 
@@ -219,6 +223,7 @@ class applyShapeKey(bpy.types.Operator):
 					key.driver_remove("slider_max") #to delete duplicates
 
 
+		target_obj.data.shape_keys.use_relative = True
 		target_obj.show_only_shape_key = False
 
 
