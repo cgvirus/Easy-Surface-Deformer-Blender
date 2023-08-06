@@ -23,7 +23,7 @@ bl_info = {
 	"version": (1, 0),
 	"blender": (3, 60, 0),
 	"category": "Object",
-	"wiki_url": "https://github.com/cgvirus/Easy-Surface-Deformer-Blender"
+	"doc_url": "https://github.com/cgvirus/Easy-Surface-Deformer-Blender"
 }
 
 from .EasySurfaceDeformer import *
