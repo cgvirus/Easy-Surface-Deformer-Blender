@@ -224,6 +224,7 @@ class applyShapeKey(bpy.types.Operator):
 
 	def execute(self, context):
 		try:
+			bindSurfaceDeform.bind_surface_deform(self,context)
 			self.apply_shape_key(context)
 			removeSurfaceDeform.remove_surface_deform(self,context)
 			return {'FINISHED'}
