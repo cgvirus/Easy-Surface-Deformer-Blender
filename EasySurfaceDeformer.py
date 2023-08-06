@@ -98,6 +98,13 @@ class bindSurfaceDeform(bpy.types.Operator):
 			]
 
 		for obj in objs:
+
+			if obj.data.shape_keys == None:
+				obj.shape_key_add(name="Basis",from_mix=False)
+				obj.data.shape_keys.use_relative = False
+			else:
+				obj.data.shape_keys.use_relative = False
+
 			if obj.modifiers.get('SDF_Deformer') == None:
 				mod = obj.modifiers.new("SDF_Deformer", 'SURFACE_DEFORM')
 				mod.target = target_obj
@@ -105,6 +112,8 @@ class bindSurfaceDeform(bpy.types.Operator):
 					bpy.ops.object.surfacedeform_bind(
 						modifier=mod.name
 						)
+					
+			obj.data.shape_keys.use_relative = True
 
 		target_obj.data.shape_keys.use_relative = True
 		
@@ -184,6 +193,7 @@ class applyShapeKey(bpy.types.Operator):
 		target_key_len = len(target_obj.data.shape_keys.key_blocks)
 		target_obj.data.shape_keys.use_relative = False
 		target_obj.show_only_shape_key = True
+		
 
 
 		objs = [o for o in selected_objs
@@ -195,6 +205,7 @@ class applyShapeKey(bpy.types.Operator):
 
 			if obj.data.shape_keys == None:
 				obj.shape_key_add(name="Basis",from_mix=False)
+				obj.data.shape_keys.use_relative = False
 
 
 			for n in range (1,target_key_len):
@@ -221,6 +232,8 @@ class applyShapeKey(bpy.types.Operator):
 					key.driver_remove("value") #to delete duplicates
 					key.driver_remove("slider_min") #to delete duplicates
 					key.driver_remove("slider_max") #to delete duplicates
+			
+			obj.data.shape_keys.use_relative = True
 
 
 		target_obj.data.shape_keys.use_relative = True
