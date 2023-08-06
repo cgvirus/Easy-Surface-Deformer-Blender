@@ -21,7 +21,7 @@ bl_info = {
 	"description": "Assign Surface Deformer easily",
 	"author": "Fahad Hasan Pathik CGVIRUS",
 	"version": (1, 0),
-	"blender": (3, 60, 1),
+	"blender": (3, 00, 0),
 	"category": "Object",
 	"wiki_url": "https://github.com/cgvirus/Easy-Surface-Deformer-Blender"
 }
